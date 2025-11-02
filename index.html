@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="mn">
 <head>
@@ -561,231 +562,6 @@
             box-shadow: 0 10px 25px rgba(255, 77, 109, 0.7);
         }
 
-        /* Love Letter Styles */
-        .love-letter-container {
-            width: 100%;
-            max-width: 700px;
-            margin: 30px auto;
-            text-align: center;
-        }
-
-        #love-letter-envelope {
-            position: relative;
-            width: 280px;
-            height: 180px;
-            border-bottom-left-radius: 6px;
-            border-bottom-right-radius: 6px;
-            margin: 0 auto;
-            background-color: #d9534f;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-        }
-
-        .letter-front {
-            position: absolute;
-            width: 0;
-            height: 0;
-            z-index: 3;
-        }
-
-        .letter-flap {
-            border-left: 140px solid transparent;
-            border-right: 140px solid transparent;
-            border-bottom: 82px solid transparent;
-            border-top: 98px solid #d9534f;
-            transform-origin: top;
-            pointer-events: none;
-        }
-
-        .letter-pocket {
-            border-left: 140px solid #f5a3a2;
-            border-right: 140px solid #f5a3a2;
-            border-bottom: 90px solid #ff6f61;
-            border-top: 90px solid transparent;
-            border-bottom-left-radius: 6px;
-            border-bottom-right-radius: 6px;
-        }
-
-        .letter-content {
-            position: relative;
-            background-color: #fff;
-            width: 90%;
-            margin: 0 auto;
-            height: 90%;
-            top: 5%;
-            border-radius: 6px;
-            box-shadow: 0 2px 26px rgba(0, 0, 0, 0.12);
-            font-family: "Dancing Script", cursive;
-            color: #5a3d3d;
-            padding: 20px;
-            overflow: hidden;
-        }
-
-        .letter-words {
-            position: absolute;
-            left: 10%;
-            width: 80%;
-            background-color: #ffe6e6;
-            padding: 10px;
-            border-radius: 5px;
-        }
-
-        .letter-words.line1 {
-            top: 10%;
-            font-size: 1rem;
-            width: 30%;
-            height: auto;
-        }
-
-        .letter-words.line2 {
-            top: 30%;
-            text-align: center;
-            font-size: 1.3rem;
-        }
-
-        .letter-words.line3 {
-            top: 50%;
-            font-size: 1.3rem;
-            text-align: center;
-        }
-
-        .letter-words.line4 {
-            top: 70%;
-            font-size: 1.3rem;
-            text-align: center;
-        }
-
-        .letter-hearts {
-            position: absolute;
-            top: 90px;
-            left: 0;
-            right: 0;
-            z-index: 2;
-        }
-
-        .letter-heart {
-            position: absolute;
-            bottom: 0;
-            right: 10%;
-            pointer-events: none;
-        }
-
-        .letter-heart:before,
-        .letter-heart:after {
-            position: absolute;
-            content: "";
-            left: 50px;
-            top: 0;
-            width: 50px;
-            height: 80px;
-            background: #e60073;
-            border-radius: 50px 50px 0 0;
-            transform: rotate(-45deg);
-            transform-origin: 0 100%;
-            pointer-events: none;
-        }
-
-        .letter-heart:after {
-            left: 0;
-            transform: rotate(45deg);
-            transform-origin: 100% 100%;
-        }
-
-        .letter-open .letter-flap {
-            transform: rotateX(180deg);
-            transition: transform 0.4s ease, z-index 0.6s;
-            z-index: 1;
-        }
-
-        .letter-close .letter-flap {
-            transform: rotateX(0deg);
-            transition: transform 0.4s 0.6s ease, z-index 1s;
-            z-index: 5;
-        }
-
-        .letter-close .letter-content {
-            transform: translateY(0px);
-            transition: transform 0.4s ease, z-index 1s;
-            z-index: 1;
-        }
-
-        .letter-open .letter-content {
-            transform: translateY(-100px);
-            transition: transform 0.4s 0.6s ease, z-index 0.6s;
-            z-index: 2;
-        }
-
-        .letter-close .letter-heart {
-            opacity: 0;
-            animation: none;
-        }
-
-        .letter-a1 {
-            left: 20%;
-            transform: scale(0.6);
-            opacity: 1;
-            animation: letterSlideUp 4s linear 1, letterSideSway 2s ease-in-out 4 alternate;
-            animation-fill-mode: forwards;
-            animation-delay: 0.7s;
-        }
-
-        .letter-a2 {
-            left: 55%;
-            transform: scale(1);
-            opacity: 1;
-            animation: letterSlideUp 5s linear 1, letterSideSway 4s ease-in-out 2 alternate;
-            animation-fill-mode: forwards;
-            animation-delay: 0.7s;
-        }
-
-        .letter-a3 {
-            left: 10%;
-            transform: scale(0.8);
-            opacity: 1;
-            animation: letterSlideUp 7s linear 1, letterSideSway 2s ease-in-out 6 alternate;
-            animation-fill-mode: forwards;
-            animation-delay: 0.7s;
-        }
-
-        @keyframes letterSlideUp {
-            0% { top: 0; }
-            100% { top: -600px; }
-        }
-
-        @keyframes letterSideSway {
-            0% { margin-left: 0px; }
-            100% { margin-left: 50px; }
-        }
-
-        .letter-controls {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .letter-controls button {
-            font-weight: 800;
-            font-style: normal;
-            transition: all 0.1s linear;
-            background-color: transparent;
-            border: solid 2px #d9534f;
-            border-radius: 4px;
-            color: #d9534f;
-            display: inline-block;
-            font-size: 14px;
-            text-transform: uppercase;
-            margin: 5px;
-            padding: 10px;
-            line-height: 1em;
-            text-decoration: none;
-            min-width: 120px;
-            cursor: pointer;
-        }
-
-        .letter-controls button:hover {
-            background-color: #d9534f;
-            color: #fff;
-        }
-
         /* POPUP STYLE */
         .popup-overlay {
             position: fixed;
@@ -813,7 +589,7 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
-        .popup-content {
+        .letter-content {
             font-family: 'Dancing Script', cursive;
             color: #5a3d3d;
             font-size: 1.1rem;
@@ -943,22 +719,8 @@
                 padding: 25px;
                 max-width: 350px;
             }
-            .popup-content {
+            .letter-content {
                 font-size: 1rem;
-            }
-            #love-letter-envelope {
-                width: 240px;
-                height: 160px;
-            }
-            .letter-flap {
-                border-left: 120px solid transparent;
-                border-right: 120px solid transparent;
-                border-top: 88px solid #d9534f;
-            }
-            .letter-pocket {
-                border-left: 120px solid #f5a3a2;
-                border-right: 120px solid #f5a3a2;
-                border-bottom: 80px solid #ff6f61;
             }
         }
 
@@ -1004,7 +766,7 @@
                 padding: 20px;
                 max-width: 300px;
             }
-            .popup-content {
+            .letter-content {
                 font-size: 0.9rem;
                 line-height: 1.5;
             }
@@ -1013,25 +775,6 @@
                 height: 30px;
                 top: 10px;
                 right: 10px;
-            }
-            #love-letter-envelope {
-                width: 200px;
-                height: 140px;
-            }
-            .letter-flap {
-                border-left: 100px solid transparent;
-                border-right: 100px solid transparent;
-                border-top: 78px solid #d9534f;
-            }
-            .letter-pocket {
-                border-left: 100px solid #f5a3a2;
-                border-right: 100px solid #f5a3a2;
-                border-bottom: 70px solid #ff6f61;
-            }
-            .letter-words.line2,
-            .letter-words.line3,
-            .letter-words.line4 {
-                font-size: 1.1rem;
             }
         }
     </style>
@@ -1113,30 +856,6 @@
                 
                 <button class="special-gift-button" id="special-gift-button">💌 Онцгой бэлэг</button>
             </div>
-
-            <!-- Love Letter Section -->
-            <div class="love-letter-container hidden" id="love-letter-container">
-                <h2 style="color: #ffccff; margin-bottom: 20px; font-family: 'Dancing Script', cursive;">Миний хайрт захидал 💌</h2>
-                <div id="love-letter-envelope" class="letter-close">
-                    <div class="letter-front letter-flap"></div>
-                    <div class="letter-front letter-pocket"></div>
-                    <div class="letter-content">
-                        <div class="letter-words line1">Энхжиндээ: 💖</div>
-                        <div class="letter-words line2">Хайртай Энхжин, чи маш гоё</div>
-                        <div class="letter-words line3">Чинийг харсан бүрдээ</div>
-                        <div class="letter-words line4">миний ертөнц зогсдог,</div>
-                    </div>
-                    <div class="letter-hearts">
-                        <div class="letter-heart letter-a1"></div>
-                        <div class="letter-heart letter-a2"></div>
-                        <div class="letter-heart letter-a3"></div>
-                    </div>
-                </div>
-                <div class="letter-controls">
-                    <button id="letter-open">Нээх</button>
-                    <button id="letter-close">Хаах</button>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -1144,7 +863,7 @@
     <div class="popup-overlay" id="popup-overlay">
         <div class="popup-letter">
             <button class="close-button" id="close-button">✕</button>
-            <div class="popup-content">
+            <div class="letter-content">
                 Тест💖<br><br>
                 
                 Төрсөн өдрийн чинь мэнд хүргэе! 🎂 Энэ онцгой өдөр чамд маш гоё сэтгэгдэл үлдээхийг хүссэн юм аа. МХТС-ийн оюутан байна даа хха. ✨<br><br>
@@ -1177,10 +896,6 @@
         const videoContainer = document.getElementById('video-container');
         const watchVideoButton = document.getElementById('watch-video-button');
         const specialGiftButton = document.getElementById('special-gift-button');
-        const loveLetterContainer = document.getElementById('love-letter-container');
-        const loveLetterEnvelope = document.getElementById('love-letter-envelope');
-        const letterOpenButton = document.getElementById('letter-open');
-        const letterCloseButton = document.getElementById('letter-close');
         const popupOverlay = document.getElementById('popup-overlay');
         const closeButton = document.getElementById('close-button');
         const backgroundMusic = document.getElementById('background-music');
@@ -1482,12 +1197,6 @@
             watchVideoButton.style.display = 'none';
         }
 
-        // Show love letter
-        function showLoveLetter() {
-            loveLetterContainer.classList.remove('hidden');
-            specialGiftButton.style.display = 'none';
-        }
-
         // Video ended - show special gift button
         video.addEventListener('ended', function() {
             specialGiftButton.style.display = 'block';
@@ -1503,17 +1212,6 @@
             // Дууны чангалалтыг 70% болгох
             backgroundMusic.volume = 0.7;
         });
-
-        // Love letter functionality
-        function openLoveLetter() {
-            loveLetterEnvelope.classList.add('letter-open');
-            loveLetterEnvelope.classList.remove('letter-close');
-        }
-
-        function closeLoveLetter() {
-            loveLetterEnvelope.classList.add('letter-close');
-            loveLetterEnvelope.classList.remove('letter-open');
-        }
 
         // Event listeners
         mainButton.addEventListener('click', function() {
@@ -1549,19 +1247,7 @@
         });
 
         specialGiftButton.addEventListener('click', function() {
-            showLoveLetter();
-        });
-
-        loveLetterEnvelope.addEventListener('click', function() {
-            openLoveLetter();
-        });
-
-        letterOpenButton.addEventListener('click', function() {
-            openLoveLetter();
-        });
-
-        letterCloseButton.addEventListener('click', function() {
-            closeLoveLetter();
+            popupOverlay.style.display = 'flex';
         });
 
         closeButton.addEventListener('click', function() {

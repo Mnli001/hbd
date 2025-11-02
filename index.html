@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="mn">
 <head>
@@ -5,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Хөөрхөн Энхжиндээ - Төрсөн өдрийн мэнд✨</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="love-letter.css">
     <style>
         * {
             margin: 0;
@@ -859,37 +859,25 @@
         </div>
     </section>
 
-    <div class="love-letter-section">
-            <button class="love-letter-button" id="love-letter-button">💌 Хайрын захиа</button>
-            
-            <div class="letter-container" id="letter-container">
-                <div class="envlope-wrapper">
-                    <div id="envelope" class="close">
-                        <div class="front flap"></div>
-                        <div class="front pocket"></div>
-                        <div class="letter">
-                            <div class="words line1">Энхжиндээ: 💖</div>
-                            <div class="words line2">Хайрт минь Энхжин, чи миний амьдралын гэрэл</div>
-                            <div class="words line3">Чамтай байх бүр мөч аз жаргалтай</div>
-                            <div class="words line4">Чи үргэлж миний сэтгэлийн хаан хатан байх болно</div>
-                            <div class="words line5">Манлайгаас ❤️</div>
-                        </div>
-                        <div class="hearts">
-                            <div class="heart a1"></div>
-                            <div class="heart a2"></div>
-                            <div class="heart a3"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="letter-controls">
-                    <button id="open-letter">Нээх</button>
-                    <button id="close-letter">Хаах</button>
-                </div>
+    <!-- POPUP LETTER -->
+    <div class="popup-overlay" id="popup-overlay">
+        <div class="popup-letter">
+            <button class="close-button" id="close-button">✕</button>
+            <div class="letter-content">
+                Тест💖<br><br>
+                
+                Төрсөн өдрийн чинь мэнд хүргэе! 🎂 Энэ онцгой өдөр чамд маш гоё сэтгэгдэл үлдээхийг хүссэн юм аа. МХТС-ийн оюутан байна даа хха. ✨<br><br>
+                
+                Чи бол миний амьдралын хамгийн үнэт бэлэг, хамгийн сайхан зүйл юм. 💝 Чамтай байх болгонд сайхан, аз жаргалтай байдаг. 🌈<br><br>
+                
+                Энэ өдөр чинь баяр баясгалангаар дүүрэн, бүх мөрөөдөл чинь биелэгдэж, хайр халамж чинь эргэн ирэхийг хүсье. 🌟<br><br>
+                
+                Чамайг үргэлж хайрлаж байх болно,<br>
+                Манлайгаас 💕
             </div>
         </div>
-        
     </div>
-</section>
+
     <script>
         // DOM Elements
         const landingSection = document.getElementById('landing');
@@ -1288,7 +1276,6 @@
         
         // Дуу шууд эхлүүлэх
         window.addEventListener('load', startMusic);
-        <script src="love-letter.js">
     </script>
 </body>
 </html>

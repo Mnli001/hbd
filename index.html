@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Хөөрхөн Энхжиндээ - Төрсөн өдрийн мэнд✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(135deg, #1a0033 0%, #330033 50%, #4d004d 100%);
+            color: #fff;
+            overflow-x: hidden;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Floating Hearts Background */
+        .floating-hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .heart {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            opacity: 0.7;
+            animation: float 8s infinite ease-in-out;
+            filter: drop-shadow(0 0 8px rgba(255, 77, 109, 0.6));
+        }
+
+        .heart svg {
+            width: 100%;
+            height: 100%;
+            fill: #ff4d6d;
+        }
+
+        @keyframes float {
+            0%, 100% { 
+                transform: translate(0, 0) rotate(0deg) scale(1);
+            }
+            25% { 
+                transform: translate(10px, -20px) rotate(5deg) scale(1.1);
+            }
+            50% { 
+                transform: translate(-5px, -40px) rotate(0deg) scale(1.2);
+            }
+            75% { 
+                transform: translate(-10px, -20px) rotate(-5deg) scale(1.1);
+            }
+        }
+
+        /* Calendar */
+        .calendar-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin: 30px auto;
+            max-width: 400px;
+        }
+
+        .calendar-title {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #ffccff;
+        }
+
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+            font-size: 1.1rem;
+        }
+
+        .calendar-day {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .calendar-day.birthday {
+            background: linear-gradient(45deg, #ff4d6d, #ff8fa3);
+            color: white;
+            box-shadow: 0 0 15px rgba(255, 77, 109, 0.6);
+            position: relative;
+            animation: heartbeat 2s infinite;
+        }
+
+        .calendar-day.birthday::after {
+            content: '❤️';
+            position: absolute;
+            font-size: 0.8rem;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Emoji Images */
+        .emoji-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .emoji {
+            position: absolute;
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
+            animation: emojiFloat 15s infinite ease-in-out;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .emoji:nth-child(1) {
+            top: 8%;
+            left: 8%;
+            animation-delay: 0s;
+        }
+
+        .emoji:nth-child(2) {
+            top: 8%;
+            right: 8%;
+            animation-delay: 2s;
+        }
+
+        .emoji:nth-child(3) {
+            bottom: 8%;
+            left: 8%;
+            animation-delay: 4s;
+        }
+
+        .emoji:nth-child(4) {
+            bottom: 8%;
+            right: 8%;
+            animation-delay: 6s;
+        }
+
+        @keyframes emojiFloat {
+            0%, 100% { 
+                transform: translate(0, 0) rotate(0deg) scale(1);
+            }
+            25% { 
+                transform: translate(20px, -30px) rotate(10deg) scale(1.15);
+            }
+            50% { 
+                transform: translate(-15px, -20px) rotate(-8deg) scale(1.1);
+            }
+            75% { 
+                transform: translate(-20px, 15px) rotate(8deg) scale(1.15);
+            }
+        }
+
+        /* Sections */
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Landing Section */
+        #landing {
+            text-align: center;
+            position: relative;
+        }
+
+        .welcome-text h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            color: #ffccff;
+            text-shadow: 0 0 15px rgba(255, 204, 255, 0.8);
+            margin-bottom: 20px;
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            from { 
+                text-shadow: 0 0 10px rgba(255, 204, 255, 0.7), 
+                           0 0 20px rgba(255, 153, 255, 0.5); 
+            }
+            to { 
+                text-shadow: 0 0 20px rgba(255, 204, 255, 0.9), 
+                           0 0 30px rgba(255, 153, 255, 0.7),
+                           0 0 40px rgba(255, 102, 178, 0.5); 
+            }
+        }
+
+        .welcome-text p {
+            font-size: 1.3rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            color: #e6ccff;
+        }
+
+        .main-button {
+            background: linear-gradient(45deg, #ff4d6d, #ff8fa3);
+            border: none;
+            border-radius: 50px;
+            padding: 18px 45px;
+            font-size: 1.4rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 20px rgba(255, 77, 109, 0.5);
+            font-family: 'Playfair Display', serif;
+            z-index: 3;
+            position: relative;
+        }
+
+        .main-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(255, 77, 109, 0.7);
+        }
+
+        /* Night Sky Section */
+        #night-sky {
+            background: linear-gradient(135deg, #0a0a2a 0%, #1a1a4a 100%);
+        }
+
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .headline {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4.5rem;
+            text-align: center;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, #ffccff, #ff99cc, #ff66b2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: shimmer 3s ease infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .subtitle {
+            max-width: 700px;
+            text-align: center;
+            padding: 25px;
+            margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: #f0e6ff;
+        }
+
+        /* Memory Game */
+        .memory-game-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            position: relative;
+        }
+
+        .game-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #ffccff;
+        }
+
+        .game-instructions {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #e6ccff;
+            font-size: 1.1rem;
+        }
+
+        .start-game-button {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            border: none;
+            border-radius: 50px;
+            padding: 15px 35px;
+            font-size: 1.2rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+            font-family: 'Playfair Display', serif;
+            margin: 0 auto 20px;
+            display: block;
+        }
+
+        .start-game-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(76, 175, 80, 0.6);
+        }
+
+        .memory-game {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 10px;
+            margin: 0 auto;
+            max-width: 500px;
+        }
+
+        .memory-card {
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(135deg, #666, #888);
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            font-size: 2rem;
+            position: relative;
+        }
+
+        .memory-card.flipped {
+            transform: rotateY(180deg);
+            background: white;
+            color: #ff4d6d;
+        }
+
+        .memory-card .front,
+        .memory-card .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .memory-card .front {
+            background: linear-gradient(135deg, #666, #888);
+            color: white;
+        }
+
+        .memory-card .back {
+            background: white;
+            color: #ff4d6d;
+            transform: rotateY(180deg);
+        }
+
+        .memory-card.matched {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            cursor: default;
+        }
+
+        /* Gift Button */
+        .gift-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(45deg, #ff4d6d, #ff8fa3);
+            border: none;
+            border-radius: 50px;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 20px rgba(255, 77, 109, 0.5);
+            font-family: 'Playfair Display', serif;
+            z-index: 100;
+            display: none;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .gift-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(255, 77, 109, 0.7);
+        }
+
+        /* Celebration Section */
+        #celebration {
+            background: linear-gradient(135deg, #330033 0%, #660066 100%);
+            text-align: center;
+        }
+
+        .celebration-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            margin-bottom: 30px;
+            color: #ffccff;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .celebration-message {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            color: #e6ccff;
+            line-height: 1.8;
+            max-width: 800px;
+        }
+
+        .special-gift-button {
+            background: linear-gradient(45deg, #ff4d6d, #ff8fa3);
+            border: none;
+            border-radius: 50px;
+            padding: 18px 45px;
+            font-size: 1.5rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 20px rgba(255, 77, 109, 0.5);
+            font-family: 'Playfair Display', serif;
+            margin-top: 30px;
+            display: none;
+        }
+
+        /* Video Section */
+        .video-section {
+            width: 100%;
+            max-width: 700px;
+            margin: 30px auto;
+            text-align: center;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            margin-bottom: 20px;
+            display: none; /* Анхны үед нуух */
+        }
+
+        .video-player {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+            background: #000;
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 77, 109, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            width: 90px;
+            height: 90px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .play-button:hover {
+            background: rgba(255, 77, 109, 1);
+            transform: translate(-50%, -50%) scale(1.15);
+        }
+
+        .play-button::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-top: 18px solid transparent;
+            border-bottom: 18px solid transparent;
+            border-left: 30px solid white;
+            margin-left: 8px;
+        }
+
+        /* Watch Video Button */
+        .watch-video-button {
+            background: linear-gradient(45deg, #ff4d6d, #ff8fa3);
+            border: none;
+            border-radius: 50px;
+            padding: 18px 45px;
+            font-size: 1.4rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 20px rgba(255, 77, 109, 0.5);
+            font-family: 'Playfair Display', serif;
+            margin: 20px auto;
+            display: block;
+        }
+
+        .watch-video-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(255, 77, 109, 0.7);
+        }
+
+        /* POPUP STYLE */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .popup-letter {
+            background: #fff8f0;
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 400px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            border: 2px solid #ff8fa3;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .letter-content {
+            font-family: 'Dancing Script', cursive;
+            color: #5a3d3d;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #ff4d6d;
+            border: none;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            font-size: 1rem;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .close-button:hover {
+            background: #ff3357;
+            transform: scale(1.1);
+        }
+
+        /* Confetti */
+        .confetti {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background-color: #f0f;
+            opacity: 0.8;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        /* Audio Player */
+        .audio-player {
+            display: none;
+        }
+
+        /* Music Control */
+        .music-control {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .music-control:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .welcome-text h1, .headline {
+                font-size: 2.8rem;
+            }
+            .celebration-title {
+                font-size: 3rem;
+            }
+            .calendar-container {
+                padding: 20px;
+                max-width: 350px;
+            }
+            .calendar-day {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
+            .subtitle, .celebration-message {
+                font-size: 1.1rem;
+                padding: 20px;
+            }
+            .main-button, .special-gift-button, .watch-video-button {
+                padding: 15px 35px;
+                font-size: 1.2rem;
+            }
+            .memory-card {
+                height: 80px;
+                font-size: 1.8rem;
+            }
+            .video-player {
+                height: 300px;
+            }
+            .heart {
+                width: 25px;
+                height: 25px;
+            }
+            .emoji {
+                width: 85px;
+                height: 85px;
+            }
+            .gift-button {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 25px;
+                font-size: 1.1rem;
+            }
+            .music-control {
+                top: 15px;
+                right: 15px;
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+            }
+            .popup-letter {
+                padding: 25px;
+                max-width: 350px;
+            }
+            .letter-content {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .memory-game {
+                grid-gap: 5px;
+            }
+            .memory-card {
+                height: 70px;
+                font-size: 1.5rem;
+            }
+            .heart {
+                width: 20px;
+                height: 20px;
+            }
+            .emoji {
+                width: 70px;
+                height: 70px;
+            }
+            .calendar-container {
+                padding: 15px;
+                max-width: 300px;
+            }
+            .calendar-day {
+                width: 30px;
+                height: 30px;
+                font-size: 0.9rem;
+            }
+            .gift-button {
+                bottom: 15px;
+                right: 15px;
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
+            .music-control {
+                top: 10px;
+                right: 10px;
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            .popup-letter {
+                padding: 20px;
+                max-width: 300px;
+            }
+            .letter-content {
+                font-size: 0.9rem;
+                line-height: 1.5;
+            }
+            .close-button {
+                width: 30px;
+                height: 30px;
+                top: 10px;
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Audio Player -->
+    <audio class="audio-player" id="background-music" loop>
+        <source src="music.mp3" type="audio/mp3">
+        Таны хөтөч дуу тоглуулах боломжгүй байна.
+    </audio>
+
+    <!-- Music Control -->
+    <button class="music-control" id="music-control">🎵</button>
+
+    <!-- Floating Hearts Background -->
+    <div class="floating-hearts" id="floating-hearts"></div>
+
+    <!-- Emoji Images -->
+    <div class="emoji-container" id="emoji-container"></div>
+
+    <!-- Gift Button -->
+    <button class="gift-button" id="gift-button">🎁 Бэлэг</button>
+
+    <!-- Landing Section -->
+    <section id="landing">
+        <div class="welcome-text">
+            <h1>Хөөрхөн Энхжиндээ <br> Төрсөн өдрийн мэнд хүргэе 💝</h1>
+            <p>Чамдаа зориулсан жижигхээн зүйл байгаа юм аа. Нэг дуу бас байгаа болохоор Silent Mode оо унтраагаад дуугаа чангалаад сонсоорой кк</p>
+        </div>
+        <button class="main-button" id="main-button">Энд дар</button>
+    </section>
+
+    <!-- Night Sky Section -->
+    <section id="night-sky" class="hidden">
+        <div class="stars" id="stars"></div>
+        
+        <h1 class="headline">Төрсөн өдрийн мэнд! ✨</h1>
+        
+        <div class="subtitle">
+            Өнөөдөр чиний минь хамгийн онцгой өдөр, энэ онцгой өдөрт нь зориулсан миний бяцхан бэлгийг хүлээн авна уу. 💖
+        </div>
+        
+        <!-- Memory Game -->
+        <div class="memory-game-container">
+            <h2 class="game-title">Жижигхээн тоглоом 💞</h2>
+            <p class="game-instructions">Хоёр ижил зүрхний дүрсийг олж сонгоорой кк жаахан хэцүү хэцүү хха 🎯</p>
+            <button class="start-game-button" id="start-game-button">Тоглоом эхлүүлэх</button>
+            <div class="memory-game" id="memory-game"></div>
+        </div>
+    </section>
+
+    <!-- Celebration Section -->
+    <section id="celebration" class="hidden">
+        <div class="stars" id="celebration-stars"></div>
+        <div class="celebration-content">
+            <h1 class="celebration-title">Баяр хүргэе! 🎉</h1>
+            <p class="celebration-message">
+                Та тоглоомыг амжилттай дуусгалаа! Тоглоомоо амжилттай дуусгасан болохоор нэгэн онцгой бэлэгтэй кк. 💝<br>
+                Доор байгаа товчийг дарж миний нэгэн жижигхээн бичлэгийг үзээрэй. Бичлэг дуусмагц бас нэгэн товч гарж ирэх болно жүү ✨
+            </p>
+
+            <!-- Calendar -->
+            <div class="calendar-container">
+                <div class="calendar-title">2025 оны 11 сарын 19</div>
+                <div class="calendar" id="calendar"></div>
+            </div>
+            
+            <!-- Video Section -->
+            <div class="video-section">
+                <button class="watch-video-button" id="watch-video-button">🎬 Бичлэг үзэх</button>
+                
+                <div class="video-container" id="video-container">
+                    <video class="video-player" id="birthday-video">
+                        <source src="bichleg1.mp4" type="video/mp4">
+                        Таны хөтөч видео тоглуулах боломжгүй байна.
+                    </video>
+                    <div class="play-button" id="play-button"></div>
+                </div>
+                
+                <button class="special-gift-button" id="special-gift-button">💌 Онцгой бэлэг</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- POPUP LETTER -->
+    <div class="popup-overlay" id="popup-overlay">
+        <div class="popup-letter">
+            <button class="close-button" id="close-button">✕</button>
+            <div class="letter-content">
+                Тест💖<br><br>
+                
+                Төрсөн өдрийн чинь мэнд хүргэе! 🎂 Энэ онцгой өдөр чамд маш гоё сэтгэгдэл үлдээхийг хүссэн юм аа. МХТС-ийн оюутан байна даа хха. ✨<br><br>
+                
+                Чи бол миний амьдралын хамгийн үнэт бэлэг, хамгийн сайхан зүйл юм. 💝 Чамтай байх болгонд сайхан, аз жаргалтай байдаг. 🌈<br><br>
+                
+                Энэ өдөр чинь баяр баясгалангаар дүүрэн, бүх мөрөөдөл чинь биелэгдэж, хайр халамж чинь эргэн ирэхийг хүсье. 🌟<br><br>
+                
+                Чамайг үргэлж хайрлаж байх болно,<br>
+                Манлайгаас 💕
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const landingSection = document.getElementById('landing');
+        const nightSkySection = document.getElementById('night-sky');
+        const celebrationSection = document.getElementById('celebration');
+        const mainButton = document.getElementById('main-button');
+        const floatingHearts = document.getElementById('floating-hearts');
+        const emojiContainer = document.getElementById('emoji-container');
+        const starsContainer = document.getElementById('stars');
+        const celebrationStars = document.getElementById('celebration-stars');
+        const memoryGame = document.getElementById('memory-game');
+        const startGameButton = document.getElementById('start-game-button');
+        const giftButton = document.getElementById('gift-button');
+        const video = document.getElementById('birthday-video');
+        const playButton = document.getElementById('play-button');
+        const videoContainer = document.getElementById('video-container');
+        const watchVideoButton = document.getElementById('watch-video-button');
+        const specialGiftButton = document.getElementById('special-gift-button');
+        const popupOverlay = document.getElementById('popup-overlay');
+        const closeButton = document.getElementById('close-button');
+        const backgroundMusic = document.getElementById('background-music');
+        const musicControl = document.getElementById('music-control');
+        const calendar = document.getElementById('calendar');
+        
+        // Game Variables
+        let firstCard = null;
+        let secondCard = null;
+        let lockBoard = false;
+        let matchedPairs = 0;
+        const totalPairs = 8;
+        let gameStarted = false;
+        let isMusicPlaying = false;
+        let videoStarted = false;
+
+        // Card symbols
+        const cardSymbols = ['❤️', '💖', '💕', '💗', '💓', '💞', '💘', '💝'];
+
+        // Create November 2025 Calendar
+        function createCalendar() {
+            const daysOfWeek = ['Да', 'Мя', 'Лх', 'Пү', 'Ба', 'Бя', 'Ня'];
+            const november2025 = [
+                1, 2, 3, 4, 5, 6, 7,
+                8, 9, 10, 11, 12, 13, 14,
+                15, 16, 17, 18, 19, 20, 21,
+                22, 23, 24, 25, 26, 27, 28,
+                29, 30
+            ];
+
+            // Days of week
+            daysOfWeek.forEach(day => {
+                const dayElement = document.createElement('div');
+                dayElement.className = 'calendar-day';
+                dayElement.textContent = day;
+                dayElement.style.fontWeight = 'bold';
+                dayElement.style.color = '#ffccff';
+                calendar.appendChild(dayElement);
+            });
+
+            // Empty days for November 1st (Saturday)
+            for (let i = 0; i < 5; i++) {
+                const emptyDay = document.createElement('div');
+                emptyDay.className = 'calendar-day';
+                calendar.appendChild(emptyDay);
+            }
+
+            // Calendar days - 19-ний өдөр дээр зүрх
+            november2025.forEach(day => {
+                const dayElement = document.createElement('div');
+                dayElement.className = 'calendar-day';
+                dayElement.textContent = day;
+                
+                if (day === 19) {
+                    dayElement.classList.add('birthday');
+                }
+                
+                calendar.appendChild(dayElement);
+            });
+        }
+
+        // Music control
+        function toggleMusic() {
+            if (isMusicPlaying) {
+                backgroundMusic.pause();
+                musicControl.textContent = '🔇';
+                isMusicPlaying = false;
+            } else {
+                backgroundMusic.play().then(() => {
+                    musicControl.textContent = '🎵';
+                    isMusicPlaying = true;
+                }).catch(e => {
+                    console.log('Дуу эхлүүлэхэд алдаа:', e);
+                });
+            }
+        }
+
+        // Дуу шууд эхлүүлэх
+        function startMusic() {
+            backgroundMusic.volume = 0.3;
+            backgroundMusic.play().then(() => {
+                musicControl.textContent = '🎵';
+                isMusicPlaying = true;
+            }).catch(e => {
+                console.log('Дуу автоматаар эхлүүлэхэд алдаа:', e);
+                document.addEventListener('click', function startMusicOnClick() {
+                    backgroundMusic.play().then(() => {
+                        musicControl.textContent = '🎵';
+                        isMusicPlaying = true;
+                    });
+                    document.removeEventListener('click', startMusicOnClick);
+                }, { once: true });
+            });
+        }
+
+        // Create floating hearts
+        function createHearts() {
+            const heartsCount = 25;
+            const heartSVG = `<svg viewBox="0 0 32 29.6">
+                <path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/>
+            </svg>`;
+            
+            const colors = ['#ff4d6d', '#ff8fa3', '#ffb3c1', '#ffccff'];
+            
+            for (let i = 0; i < heartsCount; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = heartSVG;
+                
+                const x = Math.random() * 95;
+                const y = Math.random() * 95;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const delay = Math.random() * 5;
+                const duration = Math.random() * 3 + 5;
+                
+                heart.style.left = `${x}%`;
+                heart.style.top = `${y}%`;
+                heart.style.animationDelay = `${delay}s`;
+                heart.style.animationDuration = `${duration}s`;
+                heart.querySelector('svg').style.fill = color;
+                
+                floatingHearts.appendChild(heart);
+            }
+        }
+
+        // Create emoji images
+        function createEmojis() {
+            const emojiImages = ['emoji1.png', 'emoji2.png', 'emoji3.png', 'emoji4.png'];
+            
+            emojiImages.forEach((src, index) => {
+                const emoji = document.createElement('img');
+                emoji.className = 'emoji';
+                emoji.src = src;
+                emoji.alt = `Emoji ${index + 1}`;
+                emoji.onerror = function() {
+                    this.style.display = 'none';
+                };
+                emojiContainer.appendChild(emoji);
+            });
+        }
+
+        // Create stars
+        function createStars(container) {
+            const starsCount = 100;
+            for (let i = 0; i < starsCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.width = Math.random() * 3 + 1 + 'px';
+                star.style.height = Math.random() * 3 + 1 + 'px';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                
+                container.appendChild(star);
+            }
+        }
+
+        // Create memory game
+        function createMemoryGame() {
+            memoryGame.innerHTML = '';
+            const cards = [];
+            
+            for (let i = 0; i < totalPairs; i++) {
+                cards.push(cardSymbols[i]);
+                cards.push(cardSymbols[i]);
+            }
+            
+            // Shuffle
+            for (let i = cards.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [cards[i], cards[j]] = [cards[j], cards[i]];
+            }
+            
+            // Create cards
+            cards.forEach((symbol) => {
+                const card = document.createElement('div');
+                card.className = 'memory-card';
+                card.dataset.symbol = symbol;
+                
+                const front = document.createElement('div');
+                front.className = 'front';
+                front.textContent = '?';
+                
+                const back = document.createElement('div');
+                back.className = 'back';
+                back.textContent = symbol;
+                
+                card.appendChild(front);
+                card.appendChild(back);
+                
+                card.addEventListener('click', () => flipCard(card));
+                memoryGame.appendChild(card);
+            });
+
+            // Reset stats
+            matchedPairs = 0;
+            gameStarted = false;
+            startGameButton.style.display = 'block';
+            giftButton.style.display = 'none';
+        }
+
+        // Flip card
+        function flipCard(card) {
+            if (!gameStarted || lockBoard || card === firstCard || card.classList.contains('flipped')) return;
+            
+            card.classList.add('flipped');
+            
+            if (!firstCard) {
+                firstCard = card;
+                return;
+            }
+            
+            secondCard = card;
+            checkForMatch();
+        }
+
+        // Check match
+        function checkForMatch() {
+            lockBoard = true;
+            
+            const isMatch = firstCard.dataset.symbol === secondCard.dataset.symbol;
+            
+            if (isMatch) {
+                disableCards();
+            } else {
+                unflipCards();
+            }
+        }
+
+        // Disable matched cards
+        function disableCards() {
+            firstCard.classList.add('matched');
+            secondCard.classList.add('matched');
+            matchedPairs++;
+            
+            if (matchedPairs === totalPairs) {
+                giftButton.style.display = 'block';
+            }
+            
+            resetBoard();
+        }
+
+        // Unflip cards
+        function unflipCards() {
+            setTimeout(() => {
+                firstCard.classList.remove('flipped');
+                secondCard.classList.remove('flipped');
+                resetBoard();
+            }, 1000);
+        }
+
+        // Reset board
+        function resetBoard() {
+            [firstCard, secondCard] = [null, null];
+            lockBoard = false;
+        }
+
+        // Show celebration
+        function showCelebration() {
+            nightSkySection.classList.add('hidden');
+            celebrationSection.classList.remove('hidden');
+            createStars(celebrationStars);
+            createConfetti();
+            giftButton.style.display = 'none';
+            
+            // Дууны чангалалтыг 70% болгох
+            backgroundMusic.volume = 0.7;
+        }
+
+        // Create confetti
+        function createConfetti() {
+            const confettiCount = 50;
+            const colors = ['#ff69b4', '#9370db', '#20b2aa', '#ffa500', '#ffd700'];
+            
+            for (let i = 0; i < confettiCount; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.top = '-20px';
+                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                
+                document.body.appendChild(confetti);
+                
+                setTimeout(() => {
+                    confetti.style.transition = 'all 2s ease-out';
+                    confetti.style.top = '100vh';
+                    confetti.style.opacity = '0';
+                    
+                    setTimeout(() => confetti.remove(), 2000);
+                }, 100);
+            }
+        }
+
+        // Show video
+        function showVideo() {
+            videoContainer.style.display = 'block';
+            watchVideoButton.style.display = 'none';
+        }
+
+        // Video ended - show special gift button
+        video.addEventListener('ended', function() {
+            specialGiftButton.style.display = 'block';
+            createConfetti();
+        });
+
+        // Video play functionality
+        playButton.addEventListener('click', function() {
+            video.play();
+            this.style.display = 'none';
+            videoStarted = true;
+            
+            // Дууны чангалалтыг 70% болгох
+            backgroundMusic.volume = 0.7;
+        });
+
+        // Event listeners
+        mainButton.addEventListener('click', function() {
+            landingSection.classList.add('hidden');
+            nightSkySection.classList.remove('hidden');
+            createStars(starsContainer);
+            createMemoryGame();
+        });
+
+        startGameButton.addEventListener('click', function() {
+            gameStarted = true;
+            this.style.display = 'none';
+            
+            // Flip all cards briefly to show symbols
+            const cards = document.querySelectorAll('.memory-card');
+            cards.forEach(card => {
+                card.classList.add('flipped');
+            });
+            
+            setTimeout(() => {
+                cards.forEach(card => {
+                    card.classList.remove('flipped');
+                });
+            }, 2000);
+        });
+
+        giftButton.addEventListener('click', function() {
+            showCelebration();
+        });
+
+        watchVideoButton.addEventListener('click', function() {
+            showVideo();
+        });
+
+        specialGiftButton.addEventListener('click', function() {
+            popupOverlay.style.display = 'flex';
+        });
+
+        closeButton.addEventListener('click', function() {
+            popupOverlay.style.display = 'none';
+        });
+
+        popupOverlay.addEventListener('click', function(e) {
+            if (e.target === popupOverlay) {
+                popupOverlay.style.display = 'none';
+            }
+        });
+
+        musicControl.addEventListener('click', toggleMusic);
+
+        // Keyboard support for popup
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && popupOverlay.style.display === 'flex') {
+                popupOverlay.style.display = 'none';
+            }
+        });
+
+        // Initialize
+        createHearts();
+        createEmojis();
+        createCalendar();
+        
+        // Дуу шууд эхлүүлэх
+        window.addEventListener('load', startMusic);
+    </script>
+</body>
+</html>
